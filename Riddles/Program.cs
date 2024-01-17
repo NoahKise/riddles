@@ -16,16 +16,14 @@ class Program
     }
     static void RunGame()
         {
-        // Console.BackgroundColor = ConsoleColor.Blue;
-        // Console.ForegroundColor = ConsoleColor.White;
         bool playAgain = true;
         while (playAgain)
         {
 
             List<Riddle> riddles = Riddle.GetAll();
-            Console.WriteLine(Jackal.AnubisBanner);
-            Console.WriteLine($"There are {riddles.Count} riddles");
-            Console.WriteLine("You must answer them all to pass");
+            WriteFullLine(Jackal.AnubisBanner);
+            WriteFullLine($"There are {riddles.Count} riddles");
+            WriteFullLine("You must answer them all to pass");
             Console.WriteLine("--------------------------------------------------");
             for (int i = 0; i < riddles.Count; i++)
             {
@@ -81,6 +79,17 @@ class Program
             counter++;
             Thread.Sleep(100);
         }
+    }
+
+    static void WriteFullLine(string value)
+    {
+        ConsoleColor currentBackground = Console.BackgroundColor;
+        ConsoleColor currentForeground = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(value);
+        // Reset the color.
+        Console.BackgroundColor = currentBackground;
+        Console.ForegroundColor = currentForeground;
     }
 
     static void WinGame() {
